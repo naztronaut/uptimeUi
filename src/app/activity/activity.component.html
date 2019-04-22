@@ -1,0 +1,34 @@
+<div class="text-primary">
+  By default, this page only gets the last 1000 entries. Updates will be made to make that configurable.
+</div>
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.createdAt | date:"short"}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="sitesAffected">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Site </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.sitesAffected}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="activityType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.activityType}}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+  <mat-paginator [pageSizeOptions]="[50, 75, 100, 200, 1000]"></mat-paginator>
+</div>

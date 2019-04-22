@@ -1,0 +1,30 @@
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.createdAt | date:"longDate"}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="site">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Site </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.site}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.status}}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+</div>

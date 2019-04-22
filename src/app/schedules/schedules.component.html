@@ -1,0 +1,57 @@
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cronName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Name </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.cronName}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Comment </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.comment}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cronScript">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Script </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.cronScript}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cronVal">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Cron Val </mat-header-cell>
+    <mat-cell *matCellDef="let cron">
+      {{cron.cronVal}}
+    </mat-cell>
+  </ng-container>
+    <ng-container matColumnDef="enabled">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Enabled </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.enabled}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updateDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Update Date </mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        {{cron.updateDate | date:"longDate"}}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+</div>
+
+<div>
+  <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Check Frequency" type="number" name="frequencyValue" ngModel>
+    </mat-form-field>
+    <button mat-button color="primary" type="submit">Submit</button>
+  </form>
+</div>
