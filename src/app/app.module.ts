@@ -6,10 +6,18 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatButtonModule} from '@angular/material';
+import {
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatDialogModule
+} from '@angular/material';
 import {CurrentStatusComponent} from './current-status/current-status.component';
 import { ActivityComponent } from './activity/activity.component';
-import { SchedulesComponent } from './schedules/schedules.component';
+import {CronDialogComponent, SchedulesComponent} from './schedules/schedules.component';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -18,10 +26,12 @@ import {FormsModule} from '@angular/forms';
     DashboardComponent,
     CurrentStatusComponent,
     ActivityComponent,
-    SchedulesComponent
+    SchedulesComponent,
+    CronDialogComponent
   ],
+  entryComponents: [CronDialogComponent],
   imports: [
-    BrowserModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule,
+    BrowserModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule,
     AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule
   ],
   providers: [],

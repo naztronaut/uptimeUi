@@ -42,6 +42,15 @@
         {{cron.updateDate | date:"longDate"}}
       </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="controls">
+      <mat-header-cell *matHeaderCellDef>Controls</mat-header-cell>
+      <mat-cell *matCellDef="let cron">
+        <div *ngIf="cron.id != 1">
+          <i class="material-icons md-18" (click)="editCron(cron)">&nbsp;edit&nbsp;</i>
+          <i class="material-icons md-18" (click)="deleteCron()">&nbsp;delete_outline&nbsp;</i>
+        </div>
+      </mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
   </table>

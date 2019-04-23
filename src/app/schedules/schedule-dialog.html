@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Edit Cron {{data.comment}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.cronName" placeholder="Cron Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.cronVal" placeholder="Cron Value">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.cronScript" placeholder="Cron Script">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.enabled" placeholder="Enabled?">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+</div>
