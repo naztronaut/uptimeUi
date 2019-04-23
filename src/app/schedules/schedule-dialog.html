@@ -9,9 +9,12 @@
   <mat-form-field>
     <input matInput [(ngModel)]="data.cronScript" placeholder="Cron Script">
   </mat-form-field>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.enabled" placeholder="Enabled?">
-  </mat-form-field>
+  <!--<mat-form-field>-->
+    <!--<input matInput [(ngModel)]="data.enabled" placeholder="Enabled?">-->
+  <!--</mat-form-field>-->
+  <!--<mat-form-field>-->
+    <mat-slide-toggle [(ngModel)]="data.enabled" [checked]="(data.enabled == 1) ? 'true' : 'false'"> {{(data.enabled == 1) ? 'Enabled' : 'Disabled'}}</mat-slide-toggle>
+  <!--</mat-form-field>-->
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

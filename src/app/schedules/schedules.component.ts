@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSort, MatTableDataSource} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSlideToggleChange, MatSort, MatTableDataSource} from '@angular/material';
 import {ScheduleService} from '../services/schedule.service';
 import {NgForm} from '@angular/forms';
 import {Schedule} from '../model/schedule';
@@ -15,6 +15,7 @@ export class SchedulesComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['id', 'cronName', 'comment', 'cronScript', 'cronVal', 'enabled', 'updateDate', 'controls'];
   @ViewChild(MatSort) sort: MatSort;
+  color: 'primary';
   constructor(private scheduleService: ScheduleService, private dialog: MatDialog) {
     this.scheduleService.getCron().subscribe(res => {
       this.dataSource.data = res;
@@ -41,10 +42,19 @@ export class SchedulesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        this.scheduleService.updateCron(result.comment, result.cronName, result.cronVal, result.enabled).subscribe(res => {
+        const status = (result.enabled) ? 1 : 0;
+        this.scheduleService.updateCron(result.comment, result.cronName, result.cronVal, status).subscribe(res => {
           console.log(res);
         });
       }
+    });
+  }
+
+  cronToggle(ob: MatSlideToggleChange, cron: Schedule): void {
+    const checked = (ob.checked) ? 1 : 0;
+    console.log(checked);
+    this.scheduleService.updateCron(cron.comment, cron.cronName, cron.cronVal, checked).subscribe(res => {
+      console.log(res);
     });
   }
 
