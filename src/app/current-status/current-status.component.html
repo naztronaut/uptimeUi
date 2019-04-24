@@ -21,7 +21,9 @@
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
       <mat-cell *matCellDef="let stat">
-        {{stat.status}}
+        <i class="material-icons md-18" [ngStyle]="(stat.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+          {{(stat.status === 'up') ? 'check_circle' : 'error'}}
+        </i>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

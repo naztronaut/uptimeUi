@@ -24,7 +24,9 @@
     <ng-container matColumnDef="activityType">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
       <mat-cell *matCellDef="let stat">
-        {{stat.activityType}}
+        <i class="material-icons md-18" [ngStyle]="(stat.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+          {{(stat.activityType === 'up') ? 'check_circle' : 'error'}}
+        </i>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
