@@ -57,11 +57,22 @@
   </table>
 </div>
 
-<div>
-  <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Check Frequency" type="number" name="frequencyValue" ngModel>
-    </mat-form-field>
-    <button mat-button color="primary" type="submit">Submit</button>
-  </form>
+<div class="row">
+  <div class="col">
+    <mat-card class="frequencyCard">
+      <mat-card-header>
+        <mat-card-title>Check Frequency</mat-card-title>
+        <mat-card-subtitle>Currently checked every {{currentCheckedMinutes}} minutes</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Check Frequency" type="number" name="frequencyValue" ngModel>
+          </mat-form-field><br />
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+

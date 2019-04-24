@@ -23,12 +23,13 @@ export class ScheduleService {
     return this.http.put<any>('http://192.168.1.54/uptime/checkFrequency', Params);
   }
 
-  updateCron(comment, cronName, cronVal, enabled): Observable<any> {
+  updateCron(comment, cronName, cronVal, enabled, cronScript): Observable<any> {
     let Params = new HttpParams();
     Params = Params.append('comment', comment);
     Params = Params.append('cronName', cronName);
     Params = Params.append('cronVal', cronVal);
     Params = Params.append('enabled', enabled);
+    Params = Params.append('cronScript', cronScript);
 
     return this.http.put<any>('http://192.168.1.54/uptime/updateCron', Params);
   }

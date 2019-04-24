@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSlideToggleChange, MatSort, MatTableDataSource} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSlideToggleChange, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {ScheduleService} from '../services/schedule.service';
 import {NgForm} from '@angular/forms';
 import {Schedule} from '../model/schedule';
@@ -16,20 +16,26 @@ export class SchedulesComponent implements OnInit {
   displayedColumns = ['id', 'cronName', 'comment', 'cronScript', 'cronVal', 'enabled', 'updateDate', 'controls'];
   @ViewChild(MatSort) sort: MatSort;
   color: 'primary';
-  constructor(private scheduleService: ScheduleService, private dialog: MatDialog) {
+  currentCheckedMinutes: number;
+  constructor(private scheduleService: ScheduleService, private dialog: MatDialog, private snackBar: MatSnackBar) {
     this.scheduleService.getCron().subscribe(res => {
       this.dataSource.data = res;
+      this.currentCheckedMinutes = +res[0].cronVal;
     });
   }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    console.log(this.dataSource);
   }
 
   changeFrequency(f: NgForm): void {
     console.log(f.value);
     this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {
       console.log(res);
+      this.refreshScheduleTable();
+      f.resetForm();
+      this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close');
     });
   }
 
@@ -43,7 +49,7 @@ export class SchedulesComponent implements OnInit {
       if (result) {
         console.log(result);
         const status = (result.enabled) ? 1 : 0;
-        this.scheduleService.updateCron(result.comment, result.cronName, result.cronVal, status).subscribe(res => {
+        this.scheduleService.updateCron(result.comment, result.cronName, result.cronVal, status, result.cronScript).subscribe(res => {
           console.log(res);
         });
       }
@@ -53,11 +59,24 @@ export class SchedulesComponent implements OnInit {
   cronToggle(ob: MatSlideToggleChange, cron: Schedule): void {
     const checked = (ob.checked) ? 1 : 0;
     console.log(checked);
-    this.scheduleService.updateCron(cron.comment, cron.cronName, cron.cronVal, checked).subscribe(res => {
+    this.scheduleService.updateCron(cron.comment, cron.cronName, cron.cronVal, checked, cron.cronScript).subscribe(res => {
       console.log(res);
+      this.openSnackBar(cron.cronName + ' was ' + ((ob.checked) ? ' enabled.' : 'disabled') , 'Close');
     });
   }
 
+  refreshScheduleTable(): void {
+    this.scheduleService.getCron().subscribe(res => {
+      this.dataSource.data = res;
+      this.currentCheckedMinutes = +res[0].cronVal;
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }
 
 @Component({
