@@ -10,7 +10,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 export class ActivityComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
-  displayedColumns = ['id', 'createdAt', 'activityType', 'sitesAffected'];
+  displayedColumns = ['id', 'createdAt',  'sitesAffected', 'activityType'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private activityService: ActivityService) {
