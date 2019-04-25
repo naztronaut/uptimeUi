@@ -19,6 +19,7 @@ import {CurrentStatusComponent} from './current-status/current-status.component'
 import { ActivityComponent } from './activity/activity.component';
 import {CronDialogComponent, SchedulesComponent} from './schedules/schedules.component';
 import {FormsModule} from '@angular/forms';
+import { OutagesComponent } from './outages/outages.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FormsModule} from '@angular/forms';
     CurrentStatusComponent,
     ActivityComponent,
     SchedulesComponent,
-    CronDialogComponent
+    CronDialogComponent,
+    OutagesComponent
   ],
   entryComponents: [CronDialogComponent],
   imports: [

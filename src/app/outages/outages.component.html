@@ -1,0 +1,31 @@
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let outage">
+        {{outage.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Created </mat-header-cell>
+      <mat-cell *matCellDef="let outage">
+        {{outage.createdAt | date:"medium"}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="numberOfSites">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> # Of Sites </mat-header-cell>
+      <mat-cell *matCellDef="let outage">
+        {{outage.numberOfSites}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="sitesAffected">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Sites Affected </mat-header-cell>
+      <mat-cell *matCellDef="let outage">
+        {{outage.sitesAffected}}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+  <mat-paginator [pageSizeOptions]="[25,50,100,200]"></mat-paginator>
+</div>
