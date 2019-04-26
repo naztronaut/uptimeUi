@@ -20,6 +20,7 @@ import { ActivityComponent } from './activity/activity.component';
 import {CronDialogComponent, SchedulesComponent} from './schedules/schedules.component';
 import {FormsModule} from '@angular/forms';
 import { OutagesComponent } from './outages/outages.component';
+import { SitesComponent } from './sites/sites.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { OutagesComponent } from './outages/outages.component';
     ActivityComponent,
     SchedulesComponent,
     CronDialogComponent,
-    OutagesComponent
+    OutagesComponent,
+    SitesComponent
   ],
   entryComponents: [CronDialogComponent],
   imports: [

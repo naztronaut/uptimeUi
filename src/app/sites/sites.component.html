@@ -1,0 +1,59 @@
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="updatedAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.updatedAt | date:"mediumDate"}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="siteName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Site </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.siteName}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="url">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> URL </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        <a href="{{stat.url}}" target="_blank">{{stat.url}}</a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.email}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        {{stat.active}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        <i class="material-icons md-18" [ngStyle]="(stat.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+          {{(stat.status === 'up') ? 'check_circle' : 'error'}}
+        </i>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="controls">
+      <mat-header-cell *matHeaderCellDef>Controls</mat-header-cell>
+      <mat-cell *matCellDef="let stat">
+        <!--<div *ngIf="stat.id != 1">-->
+          <i class="material-icons md-18" (click)="editCron(cron)">&nbsp;edit&nbsp;</i>
+          <i class="material-icons md-18" (click)="deleteCron()">&nbsp;delete_outline&nbsp;</i>
+        <!--</div>-->
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+</div>
