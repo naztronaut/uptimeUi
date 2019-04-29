@@ -21,7 +21,11 @@
     <ng-container matColumnDef="sitesAffected">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Sites Affected </mat-header-cell>
       <mat-cell *matCellDef="let outage">
-        {{outage.sitesAffected}}
+        <mat-list dense>
+          <mat-list-item *ngFor="let site of convertToArray(outage.sitesAffected)">
+            {{site}}
+          </mat-list-item>
+        </mat-list>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

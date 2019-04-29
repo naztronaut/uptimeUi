@@ -13,7 +13,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatDialogModule, MatSlideToggleModule, MatCardModule, MatSnackBarModule
+  MatDialogModule, MatSlideToggleModule, MatCardModule, MatSnackBarModule, MatListModule
 } from '@angular/material';
 import {CurrentStatusComponent} from './current-status/current-status.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -38,7 +38,7 @@ import {SiteDialogComponent, SitesComponent} from './sites/sites.component';
   imports: [
     BrowserModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatSlideToggleModule,
     AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule, MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

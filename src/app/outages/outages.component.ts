@@ -24,4 +24,8 @@ export class OutagesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  convertToArray(items) {
+    return((items).slice(1, -1).split(','));
+  }
+
 }
