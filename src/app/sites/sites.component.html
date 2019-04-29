@@ -17,7 +17,7 @@
     <ng-container matColumnDef="updatedAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
       <mat-cell *matCellDef="let site">
-        {{site.updatedAt | date:"mediumDate"}}
+        {{site.updatedAt | date:"short" : "+000"}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="siteName">

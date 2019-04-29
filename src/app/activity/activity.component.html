@@ -12,7 +12,7 @@
     <ng-container matColumnDef="createdAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
       <mat-cell *matCellDef="let stat">
-        {{stat.createdAt | date:"short"}}
+        {{stat.createdAt | date:"short" : "+000"}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="sitesAffected">
