@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Edit Site {{data.siteName}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.siteName" placeholder="Site Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.url" placeholder="Site URL">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.email" placeholder="Email">
+  </mat-form-field>
+  <mat-slide-toggle [(ngModel)]="data.active" [checked]="(data.active == 1) ? 'true' : 'false'"> {{(data.active == 1) ? 'Enabled' : 'Disabled'}}</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+</div>

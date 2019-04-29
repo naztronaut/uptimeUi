@@ -2,53 +2,53 @@
   <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        {{stat.id}}
+      <mat-cell *matCellDef="let site">
+        {{site.id}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="updatedAt">
       <mat-header-cell *matHeaderCellDef mat-sort-header=""> Updated </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        {{stat.updatedAt | date:"mediumDate"}}
+      <mat-cell *matCellDef="let site">
+        {{site.updatedAt | date:"mediumDate"}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="siteName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Site </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        {{stat.siteName}}
+      <mat-cell *matCellDef="let site">
+        {{site.siteName}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="url">
       <mat-header-cell *matHeaderCellDef mat-sort-header> URL </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        <a href="{{stat.url}}" target="_blank">{{stat.url}}</a>
+      <mat-cell *matCellDef="let site">
+        <a href="{{site.url}}" target="_blank">{{site.url}}</a>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        {{stat.email}}
+      <mat-cell *matCellDef="let site">
+        {{site.email}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        {{stat.active}}
+      <mat-cell *matCellDef="let site">
+        {{site.active}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        <i class="material-icons md-18" [ngStyle]="(stat.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
-          {{(stat.status === 'up') ? 'check_circle' : 'error'}}
+      <mat-cell *matCellDef="let site">
+        <i class="material-icons md-18" [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+          {{(site.status === 'up') ? 'check_circle' : 'error'}}
         </i>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="controls">
       <mat-header-cell *matHeaderCellDef>Controls</mat-header-cell>
-      <mat-cell *matCellDef="let stat">
-        <!--<div *ngIf="stat.id != 1">-->
-          <i class="material-icons md-18" (click)="editCron(cron)">&nbsp;edit&nbsp;</i>
+      <mat-cell *matCellDef="let site">
+        <!--<div *ngIf="site.id != 1">-->
+          <i class="material-icons md-18" (click)="editeSite(site)">&nbsp;edit&nbsp;</i>
           <i class="material-icons md-18" (click)="deleteCron()">&nbsp;delete_outline&nbsp;</i>
         <!--</div>-->
       </mat-cell>
