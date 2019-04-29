@@ -1,4 +1,5 @@
-<h1 mat-dialog-title><span *ngIf="data.id; else newSite">Edit {{data.siteName}}</span><ng-template #newSite>New Site</ng-template> </h1><div mat-dialog-content>
+<h1 mat-dialog-title><span *ngIf="data.id; else newSite">Edit {{data.siteName}}</span><ng-template #newSite>New Site</ng-template> </h1>
+<div mat-dialog-content>
   <mat-form-field>
     <input matInput [(ngModel)]="data.siteName" placeholder="Site Name" cdkFocusInitial>
   </mat-form-field>
@@ -10,6 +11,7 @@
   </mat-form-field>
 
   <mat-slide-toggle [(ngModel)]="data.active" [checked]="(data.active == 1) ? 'true' : 'false'"> {{(data.active == 1) ? 'Enabled' : 'Disabled'}}</mat-slide-toggle>
+  <hr>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button (click)="onNoClick()">No Thanks</button>
