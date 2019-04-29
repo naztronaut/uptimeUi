@@ -1,4 +1,4 @@
-export interface Site {
+export class Site {
   id: number;
   siteName: string;
   url: string;

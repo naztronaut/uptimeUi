@@ -14,7 +14,16 @@ export class SiteService {
     return this.http.get<Site[]>('http://192.168.1.54/uptime/getSites');
   }
 
-  updateSite(id, siteName, url, email, active): Observable<any> {
+  addNewSite(siteName, url, email): Observable<any> {
+    let Params = new HttpParams();
+    Params = Params.append('siteName', siteName);
+    Params = Params.append('url', url);
+    Params = Params.append('email', email);
+
+    return this.http.post<any>('http://192.168.1.54/uptime/addSite', Params);
+  }
+
+  updateSite(id, siteName, url, email, active): Observable<Site[]> {
     let Params = new HttpParams();
     Params = Params.append('id', id);
     Params = Params.append('siteName', siteName);
@@ -22,6 +31,7 @@ export class SiteService {
     Params = Params.append('email', email);
     Params = Params.append('active', active);
 
-    return this.http.put<any>('http://192.168.1.54/uptime/updateSite', Params);
+    return this.http.put<Site[]>('http://192.168.1.54/uptime/updateSite', Params);
   }
+
 }

@@ -1,3 +1,11 @@
+<!--<div class="row">-->
+  <div class="d-flex justify-content-end">
+    <div class="p-2">
+      <button mat-raised-button color="primary" (click)="newSite()">Insert New Site</button>
+    </div>
+  </div>
+<!--</div>-->
+
 <div class="table-responsive-lg">
   <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
     <ng-container matColumnDef="id">
@@ -33,7 +41,8 @@
     <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
       <mat-cell *matCellDef="let site">
-        {{site.active}}
+        <mat-slide-toggle [(ngModel)]="site.active" [checked]="(site.active == 1) ? 'true' : 'false'" (change)="siteToggle($event, site)">
+        </mat-slide-toggle>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
@@ -48,12 +57,12 @@
       <mat-header-cell *matHeaderCellDef>Controls</mat-header-cell>
       <mat-cell *matCellDef="let site">
         <!--<div *ngIf="site.id != 1">-->
-          <i class="material-icons md-18" (click)="editeSite(site)">&nbsp;edit&nbsp;</i>
+          <i class="material-icons md-18" (click)="editSite(site)">&nbsp;edit&nbsp;</i>
           <i class="material-icons md-18" (click)="deleteCron()">&nbsp;delete_outline&nbsp;</i>
         <!--</div>-->
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </table>
 </div>
