@@ -48,9 +48,16 @@
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
       <mat-cell *matCellDef="let site">
-        <i class="material-icons md-18" [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
-          {{(site.status === 'up') ? 'check_circle' : 'error'}}
-        </i>
+        <span *ngIf="site.active == 0; else checkStatus">
+          <i class="material-icons md-18" [ngStyle]="{'color': 'gray'}">&nbsp;
+            pause_circle_filled
+          </i>
+        </span>
+        <ng-template #checkStatus>
+          <i class="material-icons md-18" [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+            {{(site.status === 'up') ? 'check_circle' : 'error'}}
+          </i>
+        </ng-template>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="controls">
