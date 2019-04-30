@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LedService} from '../services/led.service';
 import {Led} from '../model/led';
+import {MatSlideToggleChange} from '@angular/material';
 
 @Component({
   selector: 'app-led',
@@ -20,6 +21,14 @@ export class LedComponent implements OnInit {
   getLeds(): void {
     this.ledService.getLeds().subscribe(res => {
       this.leds = res;
+    });
+  }
+
+  ledToggle(ob: MatSlideToggleChange, led: Led): void {
+    const checked = (ob.checked) ? 1 : 0;
+    this.ledService.updateLedActive(led.color, checked).subscribe(res => {
+      console.log(res);
+      this.getLeds();
     });
   }
 
