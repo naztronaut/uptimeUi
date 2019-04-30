@@ -1,0 +1,22 @@
+<div class="row">
+<div class="col"  *ngFor="let led of leds">
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Color: {{led.color}}</mat-card-title>
+    <mat-card-subtitle>Status: {{(led.status == 0) ? 'Off' : 'On'}}</mat-card-subtitle>
+  </mat-card-header>
+  <div [ngClass]="(led.status == 1) ? led.color + ' led' : led.color + '-off led'"></div>
+  <mat-card-content>
+    <p>
+      Active:  <br />
+      GPIO Pin: {{led.pin}} <br />
+      Last updated: {{led.updateDate | date: 'medium'}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-slide-toggle [checked]="(led.active == 1) ? 'true' : 'false'" [color]="color" (change)="ledToggle($event, led)">{{(led.active == 1) ? 'Active' : 'Inactive'}}</mat-slide-toggle>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+</div>
+</div>

@@ -6,6 +6,7 @@ import {ActivityComponent} from './activity/activity.component';
 import {SchedulesComponent} from './schedules/schedules.component';
 import {OutagesComponent} from './outages/outages.component';
 import {SitesComponent} from './sites/sites.component';
+import {LedComponent} from './led/led.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'schedules', component: SchedulesComponent},
   {path: 'outages', component: OutagesComponent},
   {path: 'sites', component: SitesComponent},
+  {path: 'led', component: LedComponent},
   {path: '', pathMatch: 'full', redirectTo: '/dashboard'},
   {path: '**', pathMatch: 'full', redirectTo: '/dashboard'}
 ];
