@@ -22,6 +22,7 @@ import {FormsModule} from '@angular/forms';
 import { OutagesComponent } from './outages/outages.component';
 import {SiteDialogComponent, SitesComponent} from './sites/sites.component';
 import { LedComponent } from './led/led.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LedComponent } from './led/led.component';
     OutagesComponent,
     SitesComponent,
     SiteDialogComponent,
-    LedComponent
+    LedComponent,
+    NotificationsComponent
   ],
   entryComponents: [CronDialogComponent, SiteDialogComponent],
   imports: [

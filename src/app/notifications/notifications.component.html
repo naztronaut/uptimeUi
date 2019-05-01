@@ -1,0 +1,37 @@
+<div class="table-responsive-lg">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let notification">
+        {{notification.id}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Timestamp </mat-header-cell>
+      <mat-cell *matCellDef="let notification">
+        {{notification.createdAt | date:"medium" : "+000"}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Sites Affected </mat-header-cell>
+      <mat-cell *matCellDef="let notification">
+        <mat-list dense>
+          <mat-list-item *ngFor="let site of convertToArray(notification.content)">
+            {{site}}
+          </mat-list-item>
+        </mat-list>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Sent Status </mat-header-cell>
+      <mat-cell *matCellDef="let notification">
+        <i class="material-icons md-18" [ngStyle]="(notification.status === 'success') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+          {{(notification.status === 'success') ? 'check_circle' : 'error'}}
+        </i>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
+  </table>
+  <mat-paginator [pageSizeOptions]="[25,50,100,200]"></mat-paginator>
+</div>
