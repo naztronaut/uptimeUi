@@ -20,7 +20,7 @@ export class LedComponent implements OnInit {
 
   getLeds(): void {
     this.ledService.getLeds().subscribe(res => {
-      this.leds = res;
+      this.leds = res.slice().reverse();
     });
   }
 
