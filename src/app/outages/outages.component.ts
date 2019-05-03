@@ -28,4 +28,8 @@ export class OutagesComponent implements OnInit {
     return((items).slice(1, -1).split(','));
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
