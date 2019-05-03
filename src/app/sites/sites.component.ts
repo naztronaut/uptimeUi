@@ -17,10 +17,11 @@ export class SitesComponent implements OnInit {
   site: Site = new Site();
 
   constructor(private siteService: SiteService, private dialog: MatDialog, private snackBar: MatSnackBar) {
-    siteService.getSites().subscribe( res => {
-      this.dataSource.data = res;
-      console.log(res);
-    });
+    this.refreshSitesTable();
+    // siteService.getSites().subscribe( res => {
+    //   this.dataSource.data = res;
+    //   console.log(res);
+    // });
   }
 
   ngOnInit() {
@@ -78,7 +79,7 @@ export class SitesComponent implements OnInit {
   }
 
   refreshSitesTable(): void {
-    this.siteService.getSites().subscribe(res => {
+    this.siteService.getSites(100).subscribe(res => {
       this.dataSource.data = res;
     });
   }

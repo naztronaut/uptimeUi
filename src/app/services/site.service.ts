@@ -10,8 +10,8 @@ export class SiteService {
 
   constructor(private http: HttpClient) { }
 
-  getSites(): Observable<Site[]> {
-    return this.http.get<Site[]>('http://192.168.1.54/uptime/getSites');
+  getSites(limit: number): Observable<Site[]> {
+    return this.http.get<Site[]>('http://192.168.1.54/uptime/getSites?limit=' + limit);
   }
 
   addNewSite(siteName, url, email): Observable<any> {

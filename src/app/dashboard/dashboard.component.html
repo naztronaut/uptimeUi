@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-flame">traffic</i> <span class="cardTitle d-flex flex-row-reverse align-top text-flame">LED Status</span></div>
+      <div class="card-header bg-transparent"><i class="material-icons bg-flame headerIcon">traffic</i> <span class="cardTitle d-flex flex-row-reverse align-top text-flame">LED Status</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
         <p class="card-text d-flex justify-content-between">
@@ -15,24 +15,38 @@
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-flame" routerLink="/led">More</button> </div>
     </div>
   </div>
-  <div class="col">
-    <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-android-green">apps</i> <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Recent Activity</span></div>
-      <div class="card-body text-success">
-        <h5 class="card-title"> </h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-footer bg-transparent">Footer</div>
-    </div>
-  </div>
 </div>
 <div class="row">
   <div class="col">
     <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-blue-jeans">pages</i> <span class="cardTitle d-flex flex-row-reverse align-top text-blue-jeans">Sites</span></div>
+      <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i> <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Recent Activity</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text">
+
+
+        </p>
+      </div>
+      <div class="card-footer bg-transparent">Footer</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-header bg-transparent"><i class="material-icons bg-blue-jeans headerIcon">pages</i> <span class="cardTitle d-flex flex-row-reverse align-top text-blue-jeans">Sites</span></div>
+      <div class="card-body text-success">
+        <h5 class="card-title"> </h5>
+        <p class="card-text">
+          <mat-list role="list">
+            <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let site of sites">
+              <span>{{site.siteName}}</span>
+              <span class="text-right justify-content-end">
+                      <i class="material-icons" mat-list-icon [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+                        {{(site.status === 'up') ? 'check_circle' : 'error'}}
+                      </i>
+                    </span>
+            </mat-list-item>
+          </mat-list>
+        </p>
       </div>
       <div class="card-footer bg-transparent">Footer</div>
     </div>
@@ -42,7 +56,7 @@
 <div class="row">
   <div class="col">
     <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-gargoyle-gas">alarm</i> <span class="cardTitle d-flex flex-row-reverse align-top text-gargoyle-gas">Scheduler</span></div>
+      <div class="card-header bg-transparent"><i class="material-icons bg-gargoyle-gas headerIcon">alarm</i> <span class="cardTitle d-flex flex-row-reverse align-top text-gargoyle-gas">Scheduler</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -52,7 +66,7 @@
   </div>
   <div class="col">
     <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-princeton-orange">cloud_off</i> <span class="cardTitle d-flex flex-row-reverse align-top text-princeton-orange">Recent Outages</span></div>
+      <div class="card-header bg-transparent"><i class="material-icons bg-princeton-orange headerIcon">cloud_off</i> <span class="cardTitle d-flex flex-row-reverse align-top text-princeton-orange">Recent Outages</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
