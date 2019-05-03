@@ -38,7 +38,7 @@
         <p class="card-text">
           <mat-list role="list">
             <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let site of sites">
-              <span>{{site.siteName}}</span>
+              <span><a href="{{site.url}}" target="_blank">{{site.siteName}}</a></span>
               <span class="text-right justify-content-end">
                       <i class="material-icons" mat-list-icon [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
                         {{(site.status === 'up') ? 'check_circle' : 'error'}}
@@ -48,7 +48,7 @@
           </mat-list>
         </p>
       </div>
-      <div class="card-footer bg-transparent">Footer</div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-blue-jeans" routerLink="/sites">More</button> </div>
     </div>
   </div>
 </div>
