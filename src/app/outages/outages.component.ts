@@ -14,7 +14,7 @@ export class OutagesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private outageService: OutageService) {
-    this.outageService.getOutages().subscribe(res => {
+    this.outageService.getOutages(500).subscribe(res => {
       this.dataSource.data = res;
     });
   }
