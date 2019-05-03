@@ -19,19 +19,6 @@
 <div class="row">
   <div class="col">
     <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i> <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Recent Activity</span></div>
-      <div class="card-body text-success">
-        <h5 class="card-title"> </h5>
-        <p class="card-text">
-
-
-        </p>
-      </div>
-      <div class="card-footer bg-transparent">Footer</div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card mb-3">
       <div class="card-header bg-transparent"><i class="material-icons bg-blue-jeans headerIcon">pages</i> <span class="cardTitle d-flex flex-row-reverse align-top text-blue-jeans">Sites</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
@@ -49,6 +36,27 @@
         </p>
       </div>
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-blue-jeans" routerLink="/sites">More</button> </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i> <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Recent Activity</span></div>
+      <div class="card-body text-success">
+        <h5 class="card-title"> </h5>
+        <p class="card-text">
+          <mat-list role="list">
+            <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let activity of activities">
+              <span><strong>{{activity.sitesAffected}}</strong> -- {{activity.createdAt | date: 'short' : '+000'}}</span>
+              <span class="text-right justify-content-end">
+                      <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+                        {{(activity.activityType === 'up') ? 'check_circle' : 'error'}}
+                      </i>
+                    </span>
+            </mat-list-item>
+          </mat-list>
+        </p>
+      </div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-android-green" routerLink="/activity">More</button></div>
     </div>
   </div>
 </div>
