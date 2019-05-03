@@ -76,7 +76,7 @@
           </form>
         </div>
       </div>
-      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/schedules">More</button></div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/schedules">More</button></div><br />
     </div>
   </div>
   <div class="col">
@@ -84,9 +84,15 @@
       <div class="card-header bg-transparent"><i class="material-icons bg-princeton-orange headerIcon">cloud_off</i> <span class="cardTitle d-flex flex-row-reverse align-top text-princeton-orange">Recent Outages</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text">
+          <mat-list role="list">
+            <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let out of outages">
+              <span class="justify-content-end"><strong>{{out.numberOfSites}}</strong> affected at <strong>{{out.createdAt | date:'medium':'+000'}}</strong></span>
+            </mat-list-item>
+          </mat-list>
+        </p>
       </div>
-      <div class="card-footer bg-transparent">Footer</div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/outages">More</button></div>
     </div>
   </div>
 </div>

@@ -9,12 +9,14 @@ import {ScheduleService} from '../services/schedule.service';
 import {Schedule} from '../model/schedule';
 import {NgForm} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
+import {OutageService} from '../services/outage.service';
+import {Outages} from '../model/outages';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less'],
-  providers: [LedService, SiteService, ActivityService, ScheduleService]
+  providers: [LedService, SiteService, ActivityService, ScheduleService, OutageService]
 })
 export class DashboardComponent implements OnInit {
 
@@ -23,8 +25,9 @@ export class DashboardComponent implements OnInit {
   activities: Activity[];
   currentCheckedMinutes: number = 15;
   checkFrequency: Schedule[];
+  outages: Outages[];
   constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService,
-              private scheduleService: ScheduleService, private snackBar: MatSnackBar) { }
+              private scheduleService: ScheduleService, private outageService: OutageService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getLeds();
@@ -49,11 +52,17 @@ export class DashboardComponent implements OnInit {
     }, err => console.log(err), () => this.getSchedule());
   }
 
+  getOutages(): void {
+    this.outageService.getOutages(3).subscribe(res => {
+      this.outages = res;
+    });
+  }
+
   getSchedule(): void {
     this.scheduleService.getCron().subscribe(res => {
       this.checkFrequency = res[0];
       this.currentCheckedMinutes = res[0].cronVal;
-    });
+    }, err => console.log(err), () => this.getOutages());
   }
 
   changeFrequency(f: NgForm): void {
