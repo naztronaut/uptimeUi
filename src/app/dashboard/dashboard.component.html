@@ -70,7 +70,7 @@
         <div class="card-text">Sites are checked every {{currentCheckedMinutes}} minutes. Change the frequency here: <br />
           <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Check Frequency" type="number" name="frequencyValue" ngModel>
+              <input matInput placeholder="Check Frequency" type="text" name="frequencyValue" ngModel>
             </mat-form-field><br />
             <button mat-raised-button color="primary" type="submit">Submit</button>
           </form>

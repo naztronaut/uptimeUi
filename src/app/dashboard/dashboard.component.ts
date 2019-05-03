@@ -23,8 +23,8 @@ export class DashboardComponent implements OnInit {
   leds: Led[];
   sites: Site[];
   activities: Activity[];
-  currentCheckedMinutes: number = 15;
-  checkFrequency: Schedule[];
+  currentCheckedMinutes: string = '15';
+  checkFrequency: Schedule;
   outages: Outages[];
   constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService,
               private scheduleService: ScheduleService, private outageService: OutageService, private snackBar: MatSnackBar) { }
