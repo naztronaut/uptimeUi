@@ -1,14 +1,24 @@
-<form #f="ngForm" (ngSubmit)="limitSubmit(f)" class="limitForm">
-  <mat-form-field [ngStyle]="{'width': '350px'}">
-    <input matInput type="number" [(ngModel)]="limit" placeholder="Limit Records" name="limit">
-    <mat-hint align="start"><strong>500 items are grabbed by default. The more you choose, the longer the load. </strong> </mat-hint>
-  </mat-form-field>
-  <button mat-button color="primary" type="submit">Submit</button>
-</form>
+
 
 <!--<div class="text-primary">-->
   <!--By default, this page only gets the last 1000 entries. Updates will be made to make that configurable.-->
 <!--</div>-->
+<div class="row d-flex justify-content-between">
+  <div class="col p-2">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="col p-2">
+    <form #f="ngForm" (ngSubmit)="limitSubmit(f)" class="limitForm">
+      <mat-form-field [ngStyle]="{'width': '350px'}">
+        <input matInput type="number" [(ngModel)]="limit" placeholder="Limit Records" name="limit">
+        <!--<mat-hint align="start"><strong>500 items are grabbed by default. The more you choose, the longer the load. </strong> </mat-hint>-->
+      </mat-form-field>
+      <!--<button mat-button color="primary" type="submit">Submit</button>-->
+    </form>
+  </div>
+</div>
 <div class="table-responsive-lg">
   <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
     <ng-container matColumnDef="id">

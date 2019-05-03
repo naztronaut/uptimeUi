@@ -36,4 +36,8 @@ export class ActivityComponent implements OnInit {
   limitSubmit(f: NgForm): void {
     this.refreshDatatable();
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
