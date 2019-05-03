@@ -1,6 +1,14 @@
-<div class="text-primary">
-  By default, this page only gets the last 1000 entries. Updates will be made to make that configurable.
-</div>
+<form #f="ngForm" (ngSubmit)="limitSubmit(f)" class="limitForm">
+  <mat-form-field [ngStyle]="{'width': '350px'}">
+    <input matInput type="number" [(ngModel)]="limit" placeholder="Limit Records" name="limit">
+    <mat-hint align="start"><strong>500 items are grabbed by default. The more you choose, the longer the load. </strong> </mat-hint>
+  </mat-form-field>
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>
+
+<!--<div class="text-primary">-->
+  <!--By default, this page only gets the last 1000 entries. Updates will be made to make that configurable.-->
+<!--</div>-->
 <div class="table-responsive-lg">
   <table mat-table [dataSource]="dataSource" matSort class="table table-hover table-bordered">
     <ng-container matColumnDef="id">
@@ -32,5 +40,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="editRecipe(row.id)" ></mat-row>
   </table>
-  <mat-paginator [pageSizeOptions]="[50, 75, 100, 200, 1000]"></mat-paginator>
+  <mat-paginator [pageSize]="100" [pageSizeOptions]="[50, 75, 100, 200, dataSource.data.length]" [showFirstLastButtons]="true"></mat-paginator>
 </div>

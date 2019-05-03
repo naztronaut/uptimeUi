@@ -10,7 +10,7 @@ export class ActivityService {
 
   constructor(private http: HttpClient) { }
 
-  getActivity(): Observable<Activity[]> {
-    return this.http.get<Activity[]>('http://192.168.1.54/uptime/getActivity?limit=1000');
+  getActivity(limit: number): Observable<Activity[]> {
+    return this.http.get<Activity[]>('http://192.168.1.54/uptime/getActivity?limit=' + limit);
   }
 }
