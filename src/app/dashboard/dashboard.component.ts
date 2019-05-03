@@ -5,19 +5,26 @@ import {Site} from '../model/site';
 import {SiteService} from '../services/site.service';
 import {ActivityService} from '../services/activity.service';
 import {Activity} from '../model/activity';
+import {ScheduleService} from '../services/schedule.service';
+import {Schedule} from '../model/schedule';
+import {NgForm} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less'],
-  providers: [LedService, SiteService, ActivityService]
+  providers: [LedService, SiteService, ActivityService, ScheduleService]
 })
 export class DashboardComponent implements OnInit {
 
   leds: Led[];
   sites: Site[];
   activities: Activity[];
-  constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService) { }
+  currentCheckedMinutes: number = 15;
+  checkFrequency: Schedule[];
+  constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService,
+              private scheduleService: ScheduleService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getLeds();
@@ -39,6 +46,28 @@ export class DashboardComponent implements OnInit {
   getActivity(): void {
     this.activityService.getActivity(5).subscribe(res => {
       this.activities = res;
+    }, err => console.log(err), () => this.getSchedule());
+  }
+
+  getSchedule(): void {
+    this.scheduleService.getCron().subscribe(res => {
+      this.checkFrequency = res[0];
+      this.currentCheckedMinutes = res[0].cronVal;
+    });
+  }
+
+  changeFrequency(f: NgForm): void {
+    this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {
+      this.currentCheckedMinutes = f.value.frequencyValue;
+      f.resetForm();
+      this.getSchedule();
+    }, err => console.log(err), () =>
+      this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
