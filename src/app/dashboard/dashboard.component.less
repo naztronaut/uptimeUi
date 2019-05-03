@@ -15,6 +15,7 @@
 
 .bg-flame {
   background-color: #E55934;
+  color: #fff;
 }
 
 .bg-android-green {
@@ -73,3 +74,53 @@
   font-weight: 600;
   //text-shadow: 1px 2px 2px rgba(100, 100, 100, .5);
 }
+
+//LED CSS START
+.led {
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0px 0px 3px black;
+  margin: 5px;
+  zoom: 5;
+}
+
+.led:after {
+  display: block;
+  content: '';
+  margin-left: 1px;
+  margin-right: 1px;
+  width: 8px;
+  height: 6px;
+  -webkit-border-top-right-radius: 4px 3px;
+  -webkit-border-top-left-radius: 4px 3px;
+  -webkit-border-bottom-right-radius: 4px 3px;
+  -webkit-border-bottom-left-radius: 4px 3px;
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
+}
+
+.green {
+  background-image: -webkit-linear-gradient(top, rgba(19, 251, 4, 1) 0%, rgba(88, 227, 67, 1) 50%, rgba(173, 237, 153, 1) 100%);
+}
+
+.green-off {
+  background-image: -webkit-linear-gradient(top, rgba(19, 251, 4, .25) 0%, rgba(88, 227, 67, .25) 50%, rgba(173, 237, 153, .25) 100%);
+}
+
+.red {
+  background-image: -webkit-linear-gradient(top, rgba(251, 19, 4, 1) 0%, rgba(227, 88, 67, 1) 50%, rgba(237, 173, 153, 1) 100%);
+}
+
+.red-off {
+  background-image: -webkit-linear-gradient(top, rgba(251, 19, 4, .25) 0%, rgba(227, 88, 67, .25) 50%, rgba(237, 173, 153, .25) 100%);
+}
+
+.yellow {
+  background-image: -webkit-linear-gradient(top, rgba(249, 160, 4, 1) 0%, rgba(224, 172, 69, 1) 50%, rgba(234, 214, 152, 1) 100%);
+}
+
+.yellow-off {
+  background-image: -webkit-linear-gradient(top, rgba(249, 160, 4, .25) 0%, rgba(224, 172, 69, .25) 50%, rgba(234, 214, 152, .25) 100%);
+}
+
+//LED CSS END

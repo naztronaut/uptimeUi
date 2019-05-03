@@ -4,9 +4,15 @@
       <div class="card-header bg-transparent"><i class="material-icons bg-flame">traffic</i> <span class="cardTitle d-flex flex-row-reverse align-top text-flame">LED Status</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text d-flex justify-content-between">
+          <!--<span>-->
+            <span *ngFor="let led of leds">
+              <div [ngClass]="(led.status == 1) ? led.color + ' led' : led.color + '-off led'"></div>
+            </span>
+          <!--</span>-->
+        </p>
       </div>
-      <div class="card-footer bg-transparent">Footer</div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-flame" routerLink="/led">More</button> </div>
     </div>
   </div>
   <div class="col">
