@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { SchedulesComponent } from './schedules.component';
+import {MatDialogModule, MatSnackBarModule, MatTableModule} from '@angular/material';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('SchedulesComponent', () => {
   let component: SchedulesComponent;
@@ -8,7 +11,9 @@ describe('SchedulesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SchedulesComponent ]
+      declarations: [ SchedulesComponent ],
+      imports: [MatTableModule, HttpClientTestingModule, FormsModule, MatDialogModule, MatSnackBarModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

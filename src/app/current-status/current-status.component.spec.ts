@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurrentStatusComponent } from './current-status.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {MatTableModule} from '@angular/material';
 
 describe('CurrentStatusComponent', () => {
   let component: CurrentStatusComponent;
@@ -8,7 +11,8 @@ describe('CurrentStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrentStatusComponent ]
+      declarations: [ CurrentStatusComponent ],
+      imports: [FormsModule, MatTableModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));
