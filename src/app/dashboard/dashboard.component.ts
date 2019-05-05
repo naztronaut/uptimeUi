@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getOutages(): void {
-    this.outageService.getOutages(3).subscribe(res => {
+    this.outageService.getOutages(4).subscribe(res => {
       this.outages = res;
     });
   }
