@@ -22,18 +22,16 @@
       <div class="card-header bg-transparent"><i class="material-icons bg-blue-jeans headerIcon">pages</i> <span class="cardTitle d-flex flex-row-reverse align-top text-blue-jeans">Sites</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
-        <p class="card-text">
-          <mat-list role="list">
-            <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let site of sites">
-              <span><a href="{{site.url}}" target="_blank">{{site.siteName}}</a></span>
-              <span class="text-right justify-content-end">
-                      <i class="material-icons" mat-list-icon [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
-                        {{(site.status === 'up') ? 'check_circle' : 'error'}}
-                      </i>
-                    </span>
-            </mat-list-item>
-          </mat-list>
-        </p>
+        <div class="card-text">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let site of sites">
+              <a href="{{site.url}}" target="_blank">{{site.siteName}}</a>
+              <span class="badge badge-pill"><i class="material-icons" mat-list-icon [ngStyle]="(site.status === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+                          {{(site.status === 'up') ? 'check_circle' : 'error'}}
+                        </i></span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-blue-jeans" routerLink="/sites">More</button> </div>
     </div>
@@ -43,18 +41,18 @@
       <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i> <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Recent Activity</span></div>
       <div class="card-body text-success">
         <h5 class="card-title"> </h5>
-        <p class="card-text">
-          <mat-list role="list">
-            <mat-list-item class="d-flex justify-content-between" role="listitem" *ngFor="let activity of activities">
-              <span><strong>{{activity.sitesAffected}}</strong> -- {{activity.createdAt | date: 'short' : '+000'}}</span>
-              <span class="text-right justify-content-end">
-                      <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+        <div class="card-text">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let activity of activities">
+              <em>{{minutesSince(activity.createdAt)}} mins ago</em> <strong>{{activity.sitesAffected}}</strong>
+              <span class="badge badge-pill">
+                <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
                         {{(activity.activityType === 'up') ? 'check_circle' : 'error'}}
-                      </i>
-                    </span>
-            </mat-list-item>
-          </mat-list>
-        </p>
+                </i>
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-android-green" routerLink="/activity">More</button></div>
     </div>

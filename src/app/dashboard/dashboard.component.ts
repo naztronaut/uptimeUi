@@ -80,4 +80,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // TODO: refactor this to be better
+  minutesSince(time: any) {
+    // console.log(time);
+    let d = (new Date(time).getTime()) / 1000;
+    let timeNow = ((new Date().getTime()) / 1000) - (60 * 60 * 4);
+    return Math.ceil((timeNow - d) / 60);
+  }
+
 }
