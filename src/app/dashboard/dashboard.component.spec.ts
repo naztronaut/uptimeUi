@@ -5,6 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {MatSnackBarModule, MatTableModule} from '@angular/material';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {ChartsModule} from 'ng2-charts';
+import {MinutesSincePipe} from '../minutes-since.pipe';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -12,8 +14,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
-      imports: [FormsModule, MatTableModule, HttpClientTestingModule, MatSnackBarModule],
+      declarations: [ DashboardComponent, MinutesSincePipe ],
+      imports: [FormsModule, MatTableModule, HttpClientTestingModule, MatSnackBarModule, ChartsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
