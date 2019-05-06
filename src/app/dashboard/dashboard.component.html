@@ -20,7 +20,7 @@
   <div class="col">
     <div class="card mb-3">
       <div class="card-header bg-transparent"><i class="material-icons bg-blue-jeans headerIcon">pages</i> <span class="cardTitle d-flex flex-row-reverse align-top text-blue-jeans">Sites</span></div>
-      <div class="card-body text-success">
+      <div class="card-body text-flames">
         <h5 class="card-title"> </h5>
         <div class="card-text">
           <ul class="list-group">
@@ -34,49 +34,6 @@
         </div>
       </div>
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-blue-jeans" routerLink="/sites">More</button> </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i>
-        <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Activity</span>
-      </div>
-      <div class="card-body text-success">
-        <h5 class="card-title"> </h5>
-        <div class="card-text">
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let activity of activities">
-              <em>{{activity.createdAt | minutesSince}} mins ago</em> <strong>{{activity.sitesAffected}}</strong>
-              <span class="badge badge-pill">
-                <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
-                        {{(activity.activityType === 'up') ? 'check_circle' : 'error'}}
-                </i>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-android-green" routerLink="/activity">More</button></div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <div class="card mb-3">
-      <div class="card-header bg-transparent"><i class="material-icons bg-gargoyle-gas headerIcon">alarm</i> <span class="cardTitle d-flex flex-row-reverse align-top text-gargoyle-gas">Scheduler</span></div>
-      <div class="card-body text-success">
-        <h5 class="card-title"> </h5>
-        <div class="card-text">Sites are checked every {{currentCheckedMinutes}} minutes. Change the frequency here: <br />
-          <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Check Frequency" type="text" name="frequencyValue" ngModel>
-            </mat-form-field><br />
-            <button mat-raised-button color="primary" type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/schedules">More</button></div>
     </div>
   </div>
   <div class="col">
@@ -97,14 +54,76 @@
                     [chartType]="barChartType">
             </canvas>
           </div>
-          <!--<ul class="list-group">-->
-            <!--<li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let out of outages">-->
-              <!--<span><strong>{{out.numberOfSites}}</strong> site(s) affected at <strong>{{out.createdAt | date:'medium':'+000'}}</strong></span>-->
-            <!--</li>-->
-          <!--</ul>-->
         </div>
       </div>
       <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/outages">More</button></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-header bg-transparent"><i class="material-icons bg-gargoyle-gas headerIcon">alarm</i> <span class="cardTitle d-flex flex-row-reverse align-top text-gargoyle-gas">Scheduler</span></div>
+      <div class="card-body text-gargoyle-gas">
+        <h5 class="card-title"> </h5>
+        <div class="card-text">Sites are checked every {{currentCheckedMinutes}} minutes. Change the frequency here: <br />
+          <form class="checkFrequencyForm" #f="ngForm" (ngSubmit)="changeFrequency(f)">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Check Frequency" type="text" name="frequencyValue" ngModel>
+            </mat-form-field><br />
+            <button mat-raised-button class="bg-gargoyle-gas" type="submit">Change Frequency</button>
+          </form>
+        </div>
+      </div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-gargoyle-gas" routerLink="/schedules">More</button></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-header bg-transparent"><i class="material-icons bg-android-green headerIcon">apps</i>
+        <span class="cardTitle d-flex flex-row-reverse align-top text-android-green">Activity</span>
+      </div>
+      <div class="card-body text-android-green">
+        <h5 class="card-title"> </h5>
+        <div class="card-text">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let activity of activities">
+              <em>{{activity.createdAt | minutesSince}} mins ago</em> <strong>{{activity.sitesAffected}}</strong>
+              <span class="badge badge-pill">
+                <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+                        {{(activity.activityType === 'up') ? 'check_circle' : 'error'}}
+                </i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-android-green" routerLink="/activity">More</button></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-3">
+      <div class="card-header bg-transparent"><i class="material-icons bg-purple-haze headerIcon">email</i>
+        <span class="cardTitle d-flex flex-row-reverse align-top text-purple-haze">Notifications</span>
+      </div>
+      <div class="card-body text-purple-haze">
+        <h5 class="card-title"> </h5>
+        <div class="card-text">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let note of notifications">
+              <em>{{note.createdAt |date: "medium" : "+000"}}</em>
+              <span class="badge badge-pill">
+                <i class="material-icons md-18" [ngStyle]="(note.status === 'success') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
+                  {{(note.status === 'success') ? 'check_circle' : 'error'}}
+                </i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer text-right bg-transparent"><button mat-raised-button class="bg-purple-haze" routerLink="/notifications">More</button></div>
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ describe('NotificationService', () => {
 
   it('should get notifications list', () => {
     const service: NotificationService = TestBed.get(NotificationService);
-    service.getNotifications().subscribe(res => {
+    service.getNotifications(5).subscribe(res => {
       expect(res).toBeTruthy();
     });
   });

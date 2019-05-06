@@ -14,6 +14,8 @@ import {Outages} from '../model/outages';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import {NotificationService} from '../services/notification.service';
+import {Notification} from '../model/notification';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +31,7 @@ export class DashboardComponent implements OnInit {
   currentCheckedMinutes: string = '15';
   checkFrequency: Schedule;
   outages: Outages[];
+  notifications: Notification[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -50,7 +53,8 @@ export class DashboardComponent implements OnInit {
     { data: []}
   ];
   constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService,
-              private scheduleService: ScheduleService, private outageService: OutageService, private snackBar: MatSnackBar) { }
+              private scheduleService: ScheduleService, private outageService: OutageService,
+              private notificationService: NotificationService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getLeds();
@@ -75,20 +79,6 @@ export class DashboardComponent implements OnInit {
     }, err => console.log(err), () => this.getSchedule());
   }
 
-  getOutages(): void {
-    this.outageService.getOutageChartData().subscribe(res => {
-      for(const mon of res) {
-        this.barChartLabels.push(this.getMonth(mon.month));
-      }
-
-      const temp: number[] = [];
-      for(const count of res) {
-        temp.push(count.outageCount);
-      }
-      this.barChartData[0].data = temp;
-    });
-  }
-
   getSchedule(): void {
     this.scheduleService.getCron().subscribe(res => {
       this.checkFrequency = res[0];
@@ -105,14 +95,35 @@ export class DashboardComponent implements OnInit {
       this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
   }
 
+  getOutages(): void {
+    this.outageService.getOutageChartData().subscribe(res => {
+      for(const mon of res) {
+        this.barChartLabels.push(this.getMonth(mon.month));
+      }
+
+      const temp: number[] = [];
+      for(const count of res) {
+        temp.push(count.outageCount);
+      }
+      this.barChartData[0].data = temp;
+    }, err => console.log(err), () => this.getNotifications());
+  }
+
+  getNotifications(): void {
+    this.notificationService.getNotifications(6).subscribe(res => {
+      this.notifications = res;
+    });
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
   }
 
-  getMonth(mon: number) : any {
-    const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  getMonth(mon: number): any {
+    const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+      'November', 'December'];
     return month[mon - 1];
   }
 }
