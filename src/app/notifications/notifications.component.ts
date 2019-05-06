@@ -14,7 +14,7 @@ export class NotificationsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns = ['id', 'createdAt', 'content', 'status'];
   constructor(private notificationService: NotificationService) {
-    this.notificationService.getNotifications().subscribe(res => {
+    this.notificationService.getNotifications(500).subscribe(res => {
       this.dataSource.data = res;
       console.log(res);
     });

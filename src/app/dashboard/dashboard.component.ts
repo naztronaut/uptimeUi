@@ -11,6 +11,11 @@ import {NgForm} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {OutageService} from '../services/outage.service';
 import {Outages} from '../model/outages';
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {Label} from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import {NotificationService} from '../services/notification.service';
+import {Notification} from '../model/notification';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,8 +31,30 @@ export class DashboardComponent implements OnInit {
   currentCheckedMinutes: string = '15';
   checkFrequency: Schedule;
   outages: Outages[];
+  notifications: Notification[];
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public barChartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[] = [
+    { data: []}
+  ];
   constructor(private ledService: LedService, private siteService: SiteService, private activityService: ActivityService,
-              private scheduleService: ScheduleService, private outageService: OutageService, private snackBar: MatSnackBar) { }
+              private scheduleService: ScheduleService, private outageService: OutageService,
+              private notificationService: NotificationService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getLeds();
@@ -52,12 +79,6 @@ export class DashboardComponent implements OnInit {
     }, err => console.log(err), () => this.getSchedule());
   }
 
-  getOutages(): void {
-    this.outageService.getOutages(4).subscribe(res => {
-      this.outages = res;
-    });
-  }
-
   getSchedule(): void {
     this.scheduleService.getCron().subscribe(res => {
       this.checkFrequency = res[0];
@@ -74,9 +95,35 @@ export class DashboardComponent implements OnInit {
       this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
   }
 
+  getOutages(): void {
+    this.outageService.getOutageChartData().subscribe(res => {
+      for(const mon of res) {
+        this.barChartLabels.push(this.getMonth(mon.month));
+      }
+
+      const temp: number[] = [];
+      for(const count of res) {
+        temp.push(count.outageCount);
+      }
+      this.barChartData[0].data = temp;
+    }, err => console.log(err), () => this.getNotifications());
+  }
+
+  getNotifications(): void {
+    this.notificationService.getNotifications(6).subscribe(res => {
+      this.notifications = res;
+    });
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  getMonth(mon: number): any {
+    const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+      'November', 'December'];
+    return month[mon - 1];
   }
 }
