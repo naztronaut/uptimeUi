@@ -46,7 +46,7 @@
         <div class="card-text">
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let activity of activities">
-              <em>{{minutesSince(activity.createdAt)}} mins ago</em> <strong>{{activity.sitesAffected}}</strong>
+              <em>{{activity.createdAt | minutesSince}} mins ago</em> <strong>{{activity.sitesAffected}}</strong>
               <span class="badge badge-pill">
                 <i class="material-icons" mat-list-icon [ngStyle]="(activity.activityType === 'up') ? {'color': 'green'} : {'color': 'red'}">&nbsp;
                         {{(activity.activityType === 'up') ? 'check_circle' : 'error'}}

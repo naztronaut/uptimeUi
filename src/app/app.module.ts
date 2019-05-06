@@ -23,6 +23,7 @@ import { OutagesComponent } from './outages/outages.component';
 import {SiteDialogComponent, SitesComponent} from './sites/sites.component';
 import { LedComponent } from './led/led.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { MinutesSincePipe } from './minutes-since.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     SitesComponent,
     SiteDialogComponent,
     LedComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    MinutesSincePipe
   ],
   entryComponents: [CronDialogComponent, SiteDialogComponent],
   imports: [
