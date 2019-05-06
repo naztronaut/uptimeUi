@@ -24,6 +24,7 @@ import {SiteDialogComponent, SitesComponent} from './sites/sites.component';
 import { LedComponent } from './led/led.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MinutesSincePipe } from './minutes-since.pipe';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { MinutesSincePipe } from './minutes-since.pipe';
   imports: [
     BrowserModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatSlideToggleModule,
     AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule,
-    MatSnackBarModule, MatListModule
+    MatSnackBarModule, MatListModule, ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
