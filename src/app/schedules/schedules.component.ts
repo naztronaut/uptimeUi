@@ -29,9 +29,12 @@ export class SchedulesComponent implements OnInit {
   }
 
   changeFrequency(f: NgForm): void {
-    this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {this.refreshScheduleTable();
+    this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {
+      this.refreshScheduleTable();
+      this.currentCheckedMinutes = f.value.frequencyValue;
       f.resetForm();
     }, err => console.log(err), () =>
+      // Snackbar displays how many minutes between site checks
       this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
   }
 
