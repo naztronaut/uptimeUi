@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {MatSnackBarModule, MatTableModule} from '@angular/material';
+import {MatSnackBarModule, MatTableModule, MatTooltipModule} from '@angular/material';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ChartsModule} from 'ng2-charts';
 import {MinutesSincePipe} from '../minutes-since.pipe';
@@ -15,7 +15,7 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent, MinutesSincePipe ],
-      imports: [FormsModule, MatTableModule, HttpClientTestingModule, MatSnackBarModule, ChartsModule],
+      imports: [FormsModule, MatTableModule, HttpClientTestingModule, MatSnackBarModule, ChartsModule, MatTooltipModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
