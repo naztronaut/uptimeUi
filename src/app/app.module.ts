@@ -13,7 +13,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatDialogModule, MatSlideToggleModule, MatCardModule, MatSnackBarModule, MatListModule
+  MatDialogModule, MatSlideToggleModule, MatCardModule, MatSnackBarModule, MatListModule, MatTooltipModule
 } from '@angular/material';
 import {CurrentStatusComponent} from './current-status/current-status.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -25,6 +25,7 @@ import { LedComponent } from './led/led.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MinutesSincePipe } from './minutes-since.pipe';
 import {ChartsModule} from 'ng2-charts';
+import { ToProperCasePipe } from './to-proper-case.pipe';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,14 @@ import {ChartsModule} from 'ng2-charts';
     SiteDialogComponent,
     LedComponent,
     NotificationsComponent,
-    MinutesSincePipe
+    MinutesSincePipe,
+    ToProperCasePipe
   ],
   entryComponents: [CronDialogComponent, SiteDialogComponent],
   imports: [
     BrowserModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatSlideToggleModule,
     AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule,
-    MatSnackBarModule, MatListModule, ChartsModule
+    MatSnackBarModule, MatListModule, ChartsModule, MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

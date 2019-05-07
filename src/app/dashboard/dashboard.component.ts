@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getActivity(): void {
-    this.activityService.getActivity(5).subscribe(res => {
+    this.activityService.getActivity(6).subscribe(res => {
       this.activities = res;
     }, err => console.log(err), () => this.getSchedule());
   }
@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getNotifications(): void {
-    this.notificationService.getNotifications(6).subscribe(res => {
+    this.notificationService.getNotifications(7).subscribe(res => {
       this.notifications = res;
     });
   }
