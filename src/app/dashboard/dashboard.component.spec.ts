@@ -7,6 +7,7 @@ import {MatSnackBarModule, MatTableModule, MatTooltipModule} from '@angular/mate
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ChartsModule} from 'ng2-charts';
 import {MinutesSincePipe} from '../minutes-since.pipe';
+import {ToProperCasePipe} from '../to-proper-case.pipe';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -14,7 +15,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, MinutesSincePipe ],
+      declarations: [ DashboardComponent, MinutesSincePipe, ToProperCasePipe ],
       imports: [FormsModule, MatTableModule, HttpClientTestingModule, MatSnackBarModule, ChartsModule, MatTooltipModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
