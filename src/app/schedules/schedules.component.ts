@@ -34,6 +34,7 @@ export class SchedulesComponent implements OnInit {
       this.currentCheckedMinutes = f.value.frequencyValue;
       f.resetForm();
     }, err => console.log(err), () =>
+      // Snackbar displays how many minutes between site checks
       this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
   }
 
