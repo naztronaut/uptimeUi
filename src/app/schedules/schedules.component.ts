@@ -26,17 +26,13 @@ export class SchedulesComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
-    console.log(this.dataSource);
   }
 
   changeFrequency(f: NgForm): void {
-    console.log(f.value);
-    this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {
-      console.log(res);
-      this.refreshScheduleTable();
+    this.scheduleService.updateCheckFrequency('Check All Sites', f.value.frequencyValue, 1).subscribe(res => {this.refreshScheduleTable();
       f.resetForm();
-      this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close');
-    });
+    }, err => console.log(err), () =>
+      this.openSnackBar('Sites will now be checked every ' + this.currentCheckedMinutes + ' minutes.' , 'Close'));
   }
 
   editCron(cron): void {
@@ -47,7 +43,6 @@ export class SchedulesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         const status = (result.enabled) ? 1 : 0;
         this.scheduleService.updateCron(result.comment, result.cronName, result.cronVal, status, result.cronScript).subscribe(res => {
           console.log(res);
@@ -58,9 +53,7 @@ export class SchedulesComponent implements OnInit {
 
   cronToggle(ob: MatSlideToggleChange, cron: Schedule): void {
     const checked = (ob.checked) ? 1 : 0;
-    console.log(checked);
     this.scheduleService.updateCron(cron.comment, cron.cronName, cron.cronVal, checked, cron.cronScript).subscribe(res => {
-      console.log(res);
       this.openSnackBar(cron.cronName + ' was ' + ((ob.checked) ? ' enabled.' : 'disabled') , 'Close');
     });
   }
