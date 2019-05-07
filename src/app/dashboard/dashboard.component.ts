@@ -61,6 +61,14 @@ export class DashboardComponent implements OnInit {
     // this.getSites();
   }
 
+  refreshData(): void {
+    // Rest chart data before refresh, otherwise it just keeps on adding labels without new data
+    this.barChartLabels = [];
+    this.barChartData[0].data
+    this.getLeds();
+    this.openSnackBar('Data Refresh Started', 'Close');
+  }
+
   getLeds(): void {
     this.ledService.getLeds().subscribe(res => {
       this.leds = res.slice().reverse();
@@ -112,7 +120,7 @@ export class DashboardComponent implements OnInit {
   getNotifications(): void {
     this.notificationService.getNotifications(7).subscribe(res => {
       this.notifications = res;
-    });
+    }, err => console.log(err), () => this.openSnackBar('Data Refresh Completed', 'Close'));
   }
 
   openSnackBar(message: string, action: string) {
